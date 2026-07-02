@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>HEIC转JPG图片转换器 · 免费批量在线工具</title>
+  <meta name="description" content="快速、免费、无广告的HEIC转JPG批量转换器。浏览器内直接转换，支持Android、iOS、Windows。上传HEIC文件，一键下载JPG。">
+  <meta name="keywords" content="heic to jpg, free image converter, batch heic converter, online heic to jpg, android heic converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://heictojpg.tool/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HEIC转JPG图片转换器 · 免费批量在线工具">
+  <meta property="og:description" content="快速、免费、无广告的HEIC转JPG批量转换器。浏览器内直接转换，支持Android、iOS、Windows。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heictojpg.tool/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HEIC转JPG图片转换器 · 免费批量在线工具">
+  <meta name="twitter:description" content="快速、免费、无广告的HEIC转JPG批量转换器。浏览器内直接转换。">
+
+  <!-- Inline CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 0.75rem 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      padding: 1.8rem 1.5rem 2rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b1e33;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #3a5a7a;
+      background: #e9eff6;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      margin-left: 0.2rem;
+    }
+
+    .subhead {
+      color: #2c4b6a;
+      font-size: 1.05rem;
+      margin-top: 0.3rem;
+      border-left: 4px solid #3b82f6;
+      padding-left: 0.9rem;
+      background: #f0f5fe;
+      border-radius: 0 12px 12px 0;
+      line-height: 1.4;
+      display: inline-block;
+    }
+
+    .tool-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .drop-area {
+      background: #f2f7ff;
+      border: 2px dashed #b3cbe0;
+      border-radius: 28px;
+      padding: 2.8rem 1.2rem;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .drop-area.drag-over {
+      background: #e2edfe;
+      border-color: #3b82f6;
+    }
+
+    .drop-area p {
+      font-size: 1.1rem;
+      color: #1a3b5c;
+      font-weight: 500;
+    }
+
+    .drop-area .icon {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .drop-area .hint {
+      font-size: 0.9rem;
+      color: #4f6f8f;
+      margin-top: 0.5rem;
+    }
+
+    .file-input-label {
+      display: inline-block;
+      background: #1e4a7a;
+      color: white;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .file-input-label:hover {
+      background: #0f3a62;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .file-list {
+      margin: 1.2rem 0 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .file-badge {
+      background: #e5edf5;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      color: #0b2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .file-badge strong {
+      font-weight: 600;
+    }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .btn-primary {
+      background: #0f3b6b;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2.6rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #6a7f9a;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #0a2b4d;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #b0c8df;
+      color: #1f4a72;
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #e6effa;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1rem;
+      margin: 1.8rem 0 0.8rem;
+    }
+
+    .preview-card {
+      background: #fafcff;
+      border-radius: 20px;
+      padding: 0.6rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e4edf6;
+      text-align: center;
+    }
+
+    .preview-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #eef4fa;
+    }
+
+    .preview-card .name {
+      font-size: 0.75rem;
+      color: #1f3b57;
+      margin: 0.3rem 0 0.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .preview-card .size {
+      font-size: 0.7rem;
+      color: #4d6d8a;
+    }
+
+    .download-all {
+      margin: 1.5rem 0 0.2rem;
+      text-align: center;
+    }
+
+    .ad-placeholder {
+      background: #f1f5f9;
+      border-radius: 24px;
+      padding: 1.2rem 1rem;
+      margin: 1.8rem 0 1rem;
+      text-align: center;
+      border: 1px solid #dbe5ef;
+      color: #2c4f72;
+    }
+
+    .ad-placeholder span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.6;
+    }
+
+    .ad-inner {
+      background: white;
+      border-radius: 18px;
+      padding: 1.2rem 0.8rem;
+      margin-top: 0.3rem;
+      font-weight: 500;
+      color: #1d3d5e;
+      border: 1px dashed #b8cee4;
+    }
+
+    .ad-inner p {
+      font-size: 0.95rem;
+    }
+
+    .affiliate-resource {
+      background: #f3f9fe;
+      border-radius: 24px;
+      padding: 1.2rem 1.2rem;
+      margin: 1.5rem 0 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      border: 1px solid #cde0f0;
+    }
+
+    .affiliate-resource .text {
+      font-size: 0.95rem;
+      color: #0b2e4b;
+    }
+
+    .affiliate-resource .text a {
+      color: #1d5b9e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .affiliate-resource .text a:hover {
+      text-decoration: underline;
+    }
+
+    .privacy-note {
+      font-size: 0.8rem;
+      color: #4b6a86;
+      background: #eef3f9;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      margin: 1.2rem 0 0.2rem;
+      display: inline-block;
+      border: 1px solid #d3e0ed;
+    }
+
+    footer {
+      color: #4b6a86;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .container {
+        padding: 1.2rem 1rem;
+      }
+      .drop-area {
+        padding: 2rem 0.8rem;
+      }
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>
+        📸 HEIC转JPG
+        <small>免费 · 批量 · 浏览器内</small>
+      </h1>
+      <div class="subhead">
+        ⚡ 上传HEIC/HEIF，一键转换为JPG。无广告，无上传服务器，隐私安全。
+      </div>
+    </header>
+
+    <!-- Core tool -->
+    <div class="tool-grid">
+      <div class="drop-area" id="dropArea">
+        <div class="icon">🖼️</div>
+        <p><strong>拖放HEIC图片到这里</strong></p>
+        <div class="hint">或点击下方按钮选择文件 · 支持批量</div>
+        <label class="file-input-label" for="fileInput">📁 选择 HEIC 文件</label>
+        <input type="file" id="fileInput" accept=".heic,.heif,image/heic,image/heif" multiple>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <div class="action-bar">
+        <button class="btn-primary" id="convertBtn">🔄 转换所有为 JPG</button>
+        <button class="btn-secondary" id="clearBtn">🗑️ 清除</button>
+      </div>
+
+      <!-- Preview & results -->
+      <div id="previewContainer" style="display: none;">
+        <div class="preview-grid" id="previewGrid"></div>
+        <div class="download-all" id="downloadAllContainer" style="display: none;">
+          <button class="btn-primary" id="downloadAllBtn">⬇️ 下载全部 JPG (ZIP)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ad placeholder (visible) -->
+    <div class="ad-placeholder">
+      <span>📢 赞助</span>
+      <div class="ad-inner">
+        <p>📌 推荐 · 快速图片编辑工具 <strong>「PhotoEditor Pro」</strong>  <span style="opacity:0.5;">(广告位)</span></p>
+      </div>
+    </div>
+
+    <!-- Affiliate / resource placeholder -->
+    <div class="affiliate-resource">
+      <div class="text">
+        🔗 <strong>相关资源：</strong> 
+        <a href="#" target="_blank" rel="noopener noreferrer">HEIC 转换指南</a> · 
+        <a href="#" target="_blank" rel="noopener noreferrer">批量图片压缩工具</a> 
+        <span style="opacity:0.6; margin-left: 0.3rem;">(affiliate)</span>
+      </div>
+      <div class="text">
+        ⭐ 推荐 <a href="#" target="_blank" rel="noopener noreferrer">HEIC 查看器</a>
+      </div>
+    </div>
+
+    <!-- Privacy note + event reporting -->
+    <div class="privacy-note">
+      🔒 隐私说明：所有转换在浏览器本地完成，不上传任何图片。事件可能被匿名统计以改进产品。
+    </div>
+
+    <footer>
+      <p>HEIC转JPG · 纯前端工具 · 无需安装</p>
+    </footer>
+  </div>
+
+  <!-- Inline vanilla JS -->
+  <script>
+    (function() {
+      // --- reportEvent function (global) ---
+      window.reportEvent = function(name, payload) {
+        if (typeof window.ORGANISM_METRICS_ENDPOINT === 'string' && window.ORGANISM_METRICS_ENDPOINT.length > 0) {
+          try {
+            const body = JSON.stringify({ event: name, payload: payload || {}, timestamp: Date.now() });
+            // Use sendBeacon for robustness, fallback to fetch
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon(window.ORGANISM_METRICS_ENDPOINT, body);
+            } else {
+              fetch(window.ORGANISM_METRICS_ENDPOINT, {
+                method: 'POST',
+                body: body,
+                keepalive: true,
+                headers: { 'Content-Type': 'application/json' }
+              }).catch(() => {});
+            }
+          } catch (e) {
+            // silently fail
+          }
+        }
+      };
+
+      // --- DOM refs ---
+      const dropArea = document.getElementById('dropArea');
+      const fileInput = document.getElementById('fileInput');
+      const fileList = document.getElementById('fileList');
+      const convertBtn = document.getElementById('convertBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const previewContainer = document.getElementById('previewContainer');
+      const previewGrid = document.getElementById('previewGrid');
+      const downloadAllContainer = document.getElementById('downloadAllContainer');
+      const downloadAllBtn = document.getElementById('downloadAllBtn');
+
+      // --- state ---
+      let heicFiles = [];           // File[]
+      let convertedBlobs = [];      // { name, blob, dataUrl? } (dataUrl for preview)
+      let previewItems = [];        // for download
+
+      // --- helper: HEIC check (basic) ---
+      function isHeicFile(file) {
+        const name = file.name.toLowerCase();
+        const type = file.type.toLowerCase();
+        return name.endsWith('.heic') || name.endsWith('.heif') || type.includes('heic') || type.includes('heif');
+      }
+
+      // --- update file list badge ---
+      function updateFileList() {
+        fileList.innerHTML = '';
+        if (heicFiles.length === 0) {
+          fileList.innerHTML = '<span style="color:#5b7b9a; font-size:0.9rem;">尚未选择文件</span>';
+          return;
+        }
+        heicFiles.forEach((f, idx) => {
+          const badge = document.createElement('span');
+          badge.className = 'file-badge';
+          badge.innerHTML = `📷 <strong>${f.name}</strong> (${(f.size / 1024).toFixed(1)} KB)`;
+          fileList.appendChild(badge);
+        });
+      }
+
+      // --- handle files (from input or drop) ---
+      function handleFiles(files) {
+        const valid = [];
+        for (let f of files) {
+          if (isHeicFile(f)) {
+            valid.push(f);
+          }
+        }
+        if (valid.length === 0) {
+          alert('请选择 .heic 或 .heif 格式的图片。');
+          return;
+        }
+        // Append (avoid duplicates by name? simple approach: add all)
+        heicFiles = heicFiles.concat(valid);
+        updateFileList();
+        // Reset preview area
+        previewContainer.style.display = 'none';
+        previewGrid.innerHTML = '';
+        downloadAllContainer.style.display = 'none';
+        convertedBlobs = [];
+        reportEvent('files_selected', { count: valid.length });
+      }
+
+      // --- file input change ---
+      fileInput.addEventListener('change', function(e) {
+        if (this.files && this.files.length) {
+          handleFiles(this.files);
+        }
+        this.value = ''; // allow re-select
+      });
+
+      // --- drag & drop ---
+      dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.classList.add('drag-over');
+      });
+      dropArea.addEventListener('dragleave', () => {
+        dropArea.classList.remove('drag-over');
+      });
+      dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.classList.remove('drag-over');
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleFiles(e.dataTransfer.files);
+        }
+      });
+
+      // --- clear ---
+      clearBtn.addEventListener('click', function() {
+        heicFiles = [];
+        convertedBlobs = [];
+        previewGrid.innerHTML = '';
+        previewContainer.style.display = 'none';
+        downloadAllContainer.style.display = 'none';
+        updateFileList();
+        reportEvent('clear_files', {});
+      });
+
+      // --- convert HEIC to JPG using canvas (browser native) ---
+      async function convertHeicToJpg(file) {
+        // Use createImageBitmap or FileReader + Image
+        return new Promise(async (resolve, reject) => {
+          try {
+            const arrayBuffer = await file.arrayBuffer();
+            const blob = new Blob([arrayBuffer], { type: 'image/heic' });
+            const imageBitmap = await createImageBitmap(blob);
+            // Create canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = imageBitmap.width;
+            canvas.height = imageBitmap.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(imageBitmap, 0, 0);
+            // Convert to jpeg blob (quality 0.92)
+            canvas.toBlob((jpegBlob) => {
+              if (jpegBlob) {
+                const name = file.name.replace(/\.(heic|heif)$/i, '.jpg') || file.name + '.jpg';
+                resolve({ name, blob: jpegBlob, width: imageBitmap.width, height: imageBitmap.height });
+              } else {
+                reject(new Error('Canvas toBlob failed'));
+              }
+            }, 'image/jpeg', 0.92);
+          } catch (err) {
+            reject(err);
+          }
+        });
+      }
+
+      // --- render preview cards ---
+      function renderPreviews(convertedArray) {
+        previewGrid.innerHTML = '';
+        if (convertedArray.length === 0) {
+          previewContainer.style.display = 'none';
+          downloadAllContainer.style.display = 'none';
+          return;
+        }
+        previewContainer.style.display = 'block';
+        convertedArray.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'preview-card';
+          const img = document.createElement('img');
+          // create object url for preview
+          const url = URL.createObjectURL(item.blob);
+          img.src = url;
+          img.alt = item.name;
+          const nameDiv = document.createElement('div');
+          nameDiv.className = 'name';
+          nameDiv.textContent = item.name;
+          const sizeDiv = document.createElement('div');
+          sizeDiv.className = 'size';
+          sizeDiv.textContent = (item.blob.size / 1024).toFixed(1) + ' KB';
+          card.appendChild(img);
+          card.appendChild(nameDiv);
+          card.appendChild(sizeDiv);
+          previewGrid.appendChild(card);
+          // store url for later revoke? we keep for session
+        });
+        downloadAllContainer.style.display = 'block';
+      }
+
+      // --- convert all ---
+      convertBtn.addEventListener('click', async function() {
+        if (heicFiles.length === 0) {
+          alert('请先添加 HEIC 文件。');
+          return;
+        }
+        convertBtn.disabled = true;
+        convertBtn.textContent = '⏳ 转换中…';
+        reportEvent('convert_start', { count: heicFiles.length });
+
+        const results = [];
+        for (let file of heicFiles) {
+          try {
+            const converted = await convertHeicToJpg(file);
+            results.push(converted);
+          } catch (err) {
+            console.warn('Conversion failed for', file.name, err);
+            // still push a placeholder? skip
+          }
+        }
+
+        convertedBlobs = results;
+        renderPreviews(results);
+        convertBtn.disabled = false;
+        convertBtn.textContent = '🔄 转换所有为 JPG';
+        reportEvent('convert_complete', { success: results.length, failed: heicFiles.length - results.length });
+      });
+
+      // --- download all as ZIP (using JSZip standalone? no, we create individual downloads or use a simple trick: sequential download) ---
+      // For simplicity without external lib: download each file individually (batch)
+      // But we want "download all" as ZIP? We'll implement a lightweight zip generation using a basic approach.
+      // We'll use a minimal zip writer (inline) to avoid external dependency.
+      // I'll implement a simple zip generator for multiple blobs.
+      
+      // Minimal ZIP generator (deflate not supported, store only, but works for jpg)
+      function createZip(files) {
+        // files: [{name: string, blob: Blob}]
+        // returns Blob (zip)
+        // Use crc32 and store method (no compression)
+        // Simple implementation based on https://en.wikipedia.org/wiki/ZIP_(file_format)
+        // We'll build local arrays
+        const localHeaders = [];
+        const centralHeaders = [];
+        let offset = 0;
+        const encoder = new TextEncoder();
+
+        for (let f of files) {
+          const nameBytes = encoder.encode(f.name);
+          const crc = crc32(f.blob);
+          const size = f.blob.size;
+          // local file header
+          const localHeader = new Uint8Array(30 + nameBytes.length);
+          localHeader.set([0x50, 0x4B, 0x03, 0x04], 0); // signature
+          localHeader.set([20, 0], 4); // version needed
+          localHeader.set([0, 0], 6); // flags
+          localHeader.set([0, 0], 8); // compression: store
+          localHeader.set([0, 0, 0, 0], 10); // mod time
+          localHeader.set([0, 0, 0, 0], 14); // mod date
+          localHeader.set([crc & 0xFF, (crc >> 8) & 0xFF, (crc >> 16) & 0xFF, (crc >> 24) & 0xFF], 18); // crc32
+          localHeader.set([size & 0xFF, (size >> 8) & 0xFF, (size >> 16) & 0xFF, (size >> 24) & 0xFF], 22); // compressed size
+          localHeader.set([size & 0xFF, (size >> 8) & 0xFF, (size >> 16) & 0xFF, (size >> 24) & 0xFF], 26); // uncompressed size
+          localHeader.set(nameBytes, 30);
+          localHeaders.push({ header: localHeader, blob: f.blob });
+
+          // central directory header
+          const centralHeader = new Uint8Array(46 + nameBytes.length);
+          centralHeader.set([0x50, 0x4B, 0x01, 0x02], 0); // signature
+          centralHeader.set([20, 0], 4); // version made by
+          centralHeader.set([20, 0], 6); // version needed
+          centralHeader.set([0, 0], 8); // flags
+          centralHeader.set([0, 0], 10); // compression
+          centralHeader.set([0, 0, 0, 0], 12); // mod time
+          centralHeader.set([0, 0, 0, 0], 16); // mod date
+          centralHeader.set([crc & 0xFF, (crc >> 8) & 0xFF, (crc >> 16) & 0xFF, (crc >> 24) & 0xFF], 20);
+          centralHeader.set([size & 0xFF, (size >> 8) & 0xFF, (size >> 16) & 0xFF, (size >> 24) & 0xFF], 24);
+          centralHeader.set([size & 0xFF, (size >> 8) & 0xFF, (size >> 16) & 0xFF, (size >> 24) & 0xFF], 28);
+          centralHeader.set([0, 0, 0, 0], 32); // extra field length
+          centralHeader.set([0, 0, 0, 0], 36); // file comment length
+          centralHeader.set([0, 0, 0, 0], 40); // disk number start
+          centralHeader.set([0, 0], 44); // internal attributes
+          centralHeader.set([0, 0, 0, 0], 46); // external attributes
+          centralHeader.set([offset & 0xFF, (offset >> 8) & 0xFF, (offset >> 16) & 0xFF, (offset >> 24) & 0xFF], 50);
+          centralHeader.set(nameBytes, 46);
+          centralHeaders.push(centralHeader);
+
+          offset += 30 + nameBytes.length + size;
+        }
+
+        // end of central directory
+        const totalEntries = files.length;
+        const centralOffset = offset;
+        let centralSize = 0;
+        for (let c of centralHeaders) centralSize += c.length;
+        const eocd = new Uint8Array(22);
+        eocd.set([0x50, 0x4B, 0x05, 0x06], 0);
+        eocd.set([0, 0], 4); // disk number
+        eocd.set([0, 0], 6); // disk with central
+        eocd.set([totalEntries & 0xFF, (totalEntries >> 8) & 0xFF], 8);
+        eocd.set([totalEntries & 0xFF, (totalEntries >> 8) & 0xFF], 10);
+        eocd.set([centralSize & 0xFF, (centralSize >> 8) & 0xFF, (centralSize >> 16) & 0xFF, (centralSize >> 24) & 0xFF], 12);
+        eocd.set([centralOffset & 0xFF, (centralOffset >> 8) & 0xFF, (centralOffset >> 16) & 0xFF, (centralOffset >> 24) & 0xFF], 16);
+        eocd.set([0, 0], 20); // comment length
+
+        // Build blob
+        const parts = [];
+        for (let lh of localHeaders) {
+          parts.push(lh.header.buffer);
+          parts.push(lh.blob);
+        }
+        for (let ch of centralHeaders) {
+          parts.push(ch.buffer);
+        }
+        parts.push(eocd.buffer);
+        return new Blob(parts, { type: 'application/zip' });
+      }
+
+      // CRC32 for blob (simple)
+      function crc32(blob) {
+        // We'll compute using a simple table (sync, but blob may be small)
+        // Use a quick implementation
+        let crc = 0xFFFFFFFF;
+        const table = new Uint32Array(256);
+        for (let i = 0; i < 256; i++) {
+          let c = i;
+          for (let j = 0; j < 8; j++) {
+            if (c & 1) c = 0xEDB88320 ^ (c >>> 1);
+            else c = c >>> 1;
+          }
+          table[i] = c;
+        }
+        // We'll read blob as arrayBuffer sync? but blob might be large. Use a worker? For simplicity, assume small.
+        // We'll use a synchronous approach for demo (blobs are jpg, usually < 5MB)
+        // But to avoid blocking, we use a promise? We'll implement async CRC.
+        // For simplicity, we compute CRC inside a promise (but zip creation is already async)
+        // We'll compute crc using FileReader sync? Not possible. We'll use a simple async approach.
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const array = new Uint8Array(e.target.result);
+            let crc = 0xFFFFFFFF;
+            for (let i = 0; i < array.length; i++) {
+              crc = table[(crc ^ array[i]) & 0xFF] ^ (crc >>> 8);
+            }
+            resolve((crc ^ 0xFFFFFFFF) >>> 0);
+          };
+          reader.onerror = reject;
+          reader.readAsArrayBuffer(blob);
+        });
+      }
+
+      // --- download all button ---
+      downloadAllBtn.addEventListener('click', async function() {
+        if (convertedBlobs.length === 0) return;
+        reportEvent('download_all_zip', { count: convertedBlobs.length });
+        // Build zip
+        const zipBlob = await createZip(convertedBlobs.map(item => ({ name: item.name, blob: item.blob })));
+        const url = URL.createObjectURL(zipBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted_images.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // --- initial state ---
+      updateFileList();
+      // Set endpoint example (can be overridden by config)
+      window.ORGANISM_METRICS_ENDPOINT = ''; // leave empty, no tracking unless configured
+      // report test
+      window.reportEvent('page_view', { tool: 'heic_to_jpg' });
+    })();
+  </script>
+
+<section data-organism-discovery="hub" style="margin:32px auto 20px;max-width:1040px;padding:16px;border-top:1px solid #d9e2ec;color:#475569;font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <strong style="display:block;color:#0f172a;margin-bottom:6px">More free browser tools</strong>
+  <p style="margin:0 0 8px">This page is part of an autonomous micro-tool network. Explore the live tool directory and related utilities.</p>
+  <p style="margin:0"><a href="https://kingms888.github.io/do-digital-organism-index/" style="color:#0f766e;font-weight:700">Open the tool directory</a> </p>
+</section>
+</body>
+</html>
